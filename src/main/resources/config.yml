@@ -1,0 +1,26 @@
+Options:
+  language: zh_CN
+  DecimalFormat: '0.0'
+  DebugLevel: 0
+# 属性生效槽位相关设定
+# 第一行含有关键词的物品在指定槽位才会读取属性
+Slots:
+  MainHand: 'MainHand'
+  Register:
+    36: 'Boots'
+    37: 'Leggings'
+    38: 'Chest'
+    39: 'Helmet'
+    40: 'OffHand'
+JavaScript:
+  # 填类名，然后可以在js中调用这些类的静态方法
+  Building:
+    Bukkit: 'org.bukkit.Bukkit'
+    API: 'ink.rainbowbridge.arathoth2.api.ArathothAPI'
+    Arrays: 'java.utils.Arrays'
+KetherAction:
+  # 现在一切属性信息采用kether处理
+  # 你可以自定义在玩家造成伤害时执行的动作
+  # 在执行前自动替换的参数: 受击者名称:[NAME] 伤害数值:[DAMAGE]
+  Attack:
+  - 'actionbar *"&f你对 [NAME] &f造成了 &4&l[DAMAGE] &f点伤害"'

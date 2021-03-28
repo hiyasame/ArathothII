@@ -4,7 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.0'
 }
 
-group = 'io.izzel.taboolib.example'
+group = 'ink.rainbowbridge.arathoth2'
 version = '1.0.0'
 
 sourceCompatibility = '1.8'
@@ -24,6 +24,10 @@ repositories {
 dependencies {
     implementation 'ink.ptms.core:v11600:11600:all'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    testCompileOnly 'org.projectlombok:lombok:1.18.4'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.4'
     implementation fileTree(dir: 'libs', includes: ['*.jar'])
 }
 
@@ -50,4 +54,8 @@ compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
