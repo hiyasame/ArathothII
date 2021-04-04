@@ -49,7 +49,7 @@ public class ArathothAPI {
      */
     public static StatusData getEntityAttrData(Entity entity, BaseAttribute attr){
             try {
-                return ((HashMap<String, StatusData>) ArathothII.getMetadata(entity, "AttributeData", ArathothII.getInstance().getPlugin())).get(attr.getName());
+                return ((HashMap<String, StatusData>) ArathothII.getMetadata(entity, "StatusData", ArathothII.getInstance().getPlugin())).get(attr.getName());
             }catch (NullPointerException ignored) {
                 return new StatusData();
             }
@@ -67,7 +67,7 @@ public class ArathothAPI {
 
     public static HashMap<String, StatusData> getEntityAttrDataMap(Entity entity){
         try {
-            return ((HashMap<String, StatusData>) ArathothII.getMetadata(entity, "AttributeData", ArathothII.getInstance().getPlugin()));
+            return ((HashMap<String, StatusData>) ArathothII.getMetadata(entity, "StatusData", ArathothII.getInstance().getPlugin()));
         }catch (NullPointerException ignored) {
             return new HashMap<>();
         }

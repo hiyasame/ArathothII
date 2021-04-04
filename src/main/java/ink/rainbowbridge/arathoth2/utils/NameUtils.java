@@ -3,6 +3,7 @@ package ink.rainbowbridge.arathoth2.utils;
 import io.izzel.taboolib.module.i18n.version.I18nOrigin;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * @Author 寒雨
@@ -14,5 +15,11 @@ public class NameUtils {
             return I18nOrigin.INSTANCE.getName(p,entity);
         }
         return entity.getCustomName();
+    }
+    public static String getItemName(Player p, ItemStack item){
+        if (item.getItemMeta().getDisplayName() == null){
+            return I18nOrigin.INSTANCE.getName(p,item);
+        }
+        return item.getItemMeta().getDisplayName();
     }
 }

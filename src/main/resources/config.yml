@@ -23,4 +23,4 @@ KetherAction:
   # 你可以自定义在玩家造成伤害时执行的动作
   # 在执行前自动替换的参数: 受击者名称:[NAME] 伤害数值:[DAMAGE]
   Attack:
-  - 'actionbar *"&f你对 [NAME] &f造成了 &4&l[DAMAGE] &f点伤害"'
+  - 'actionbar color *"&f你对 [NAME] &f造成了 &4&l[DAMAGE] &f点伤害"'

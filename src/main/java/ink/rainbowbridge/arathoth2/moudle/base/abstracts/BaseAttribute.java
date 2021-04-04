@@ -31,6 +31,7 @@ import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * 属性抽象类
@@ -273,51 +274,16 @@ public abstract class BaseAttribute {
      * @param target 目标
      * @return data
      */
-    public final StatusData parseValue(LivingEntity target) {
+    public final StatusData parseValue(LivingEntity target,List<ItemStack> items) {
             var data = new StatusData();
-            if (target instanceof Player) {
                 var p = (Player) target;
-                List<ItemStack> items = new ArrayList<>();
-                for (Integer i : AttributeManager.slotsMap.keySet()) {
-                    if (ItemUtils.isApproveItem(p.getInventory().getItem(i))) {
-                        if (ItemUtils.isType(p.getInventory().getItem(i), AttributeManager.slotsMap.get(i))) {
-                            items.add(p.getInventory().getItem(i));
-                        }
-                    }
-                }
-                if (ItemUtils.isApproveItem(p.getInventory().getItemInMainHand())) {
-                    if (ItemUtils.isType(p.getInventory().getItemInMainHand(), AttributeManager.mainHandKey)) {
-                        items.add(p.getInventory().getItemInMainHand());
-                    }
-                }
                 List<String> lores = new ArrayList<>();
                 items.forEach(s -> {
                     lores.addAll(s.getItemMeta().getLore());
                 });
-                lores.forEach(s -> {
-                    s = ChatColor.stripColor(s);
-                });
-                data = onParseValue(lores);
+                var uncolored = lores.stream().map(ChatColor::stripColor).collect(Collectors.toList());
+                data = AttributeManager.loadNBTAttribute(items,this,onParseValue(uncolored));
                 //读取nbt属性，附加值属性等
-            }else{
-                List<ItemStack> items = new ArrayList<>();
-                items.add(target.getEquipment().getBoots());
-                items.add(target.getEquipment().getLeggings());
-                items.add(target.getEquipment().getChestplate());
-                items.add(target.getEquipment().getHelmet());
-                items.add(target.getEquipment().getItemInMainHand());
-                items.add(target.getEquipment().getItemInOffHand());
-                List<String> lores = new ArrayList<>();
-                items.forEach(s -> {
-                    if(ItemUtils.isApproveItem(s)) {
-                        lores.addAll(s.getItemMeta().getLore());
-                    }
-                });
-                lores.forEach(s -> {
-                    s = ChatColor.stripColor(s);
-                });
-                data = onParseValue(lores);
-            }
             return data;
     }
 }
