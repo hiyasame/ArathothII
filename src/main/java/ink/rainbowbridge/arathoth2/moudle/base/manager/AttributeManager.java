@@ -25,6 +25,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
@@ -43,6 +44,8 @@ public class AttributeManager {
     public static File itemFeatureConfigDir = new File(ArathothII.getInstance().getPlugin().getDataFolder(), "ItemFeatures");
     public static List<BaseAttribute> attributeList = Collections.synchronizedList(new ArrayList<>());
     public static List<BaseCondition> conditionList = Collections.synchronizedList(new ArrayList<>());
+    public static ConcurrentHashMap<String,BaseAttribute> attributeMap = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String,BaseCondition> conditionMap = new ConcurrentHashMap<>();
     public static HashMap<Integer, String> slotsMap = new HashMap<>();
     public static String mainHandKey = null;
 

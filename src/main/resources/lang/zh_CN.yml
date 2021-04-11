@@ -4,6 +4,9 @@ Plugin:
   ITEMFEATURE_REGISTER: '&7[&fArathothII&7] &f注册物品特性: &8{0}&f , 来自插件: &8{1}&f , 优先级: &8{2}'
   SLOT_REGISTER: '&7[&fArathothII&7] &f注册槽位: &8{0} &f- &8{1}'
   ATTR_DEFAULTDESCRIPTION: '暂无描述'
+  PLACEHOLDER_EXCEPTION: '变量错误'
+  PAPI_REGISTER_SUCCESS: '&7[&fArathothII&7] &f成功的挂钩了 PlaceHolderAPI'
+  PAPI_REGISTER_FAIL: '&7[&fArathothII&7] &fPlaceHolderAPI 挂钩失败'
 Debug:
   ATTR_EXECUTE: 'ATTR_EXECUTE: {0} VALUE: {1},{2},{3} EXECUTOR: {4}'
   ATTR_UPDATE: 'ATTR_UPDATE: {0} , TIME: {1}ms'

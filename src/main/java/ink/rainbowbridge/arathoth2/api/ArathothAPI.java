@@ -2,13 +2,15 @@ package ink.rainbowbridge.arathoth2.api;
 
 import ink.rainbowbridge.arathoth2.ArathothII;
 import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseAttribute;
+import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseCondition;
 import ink.rainbowbridge.arathoth2.moudle.base.data.StatusData;
+import ink.rainbowbridge.arathoth2.moudle.base.manager.AttributeManager;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author 寒雨
@@ -73,4 +75,31 @@ public class ArathothAPI {
         }
     }
 
+    /**
+     * 获取属性实例list，顺序按照优先级排列
+     * @return list
+     */
+    public static List<BaseAttribute> getAttributeInstances(){
+        return AttributeManager.attributeList;
+    }
+
+    /**
+     * 获取条件实例list
+     * @return list
+     */
+    public static List<BaseCondition> getConditionInstances(){
+        return AttributeManager.conditionList;
+    }
+
+    /**
+     * 获得属性map，获取属性实例的话直接从这里面get就好
+     * @return map
+     */
+    public static ConcurrentHashMap<String, BaseAttribute> getAttributeMap(){
+        return AttributeManager.attributeMap;
+    }
+
+    public static ConcurrentHashMap<String, BaseCondition> getConditionMap(){
+        return AttributeManager.conditionMap;
+    }
 }

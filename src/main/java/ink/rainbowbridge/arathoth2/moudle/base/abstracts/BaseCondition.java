@@ -48,6 +48,7 @@ public abstract class BaseCondition {
                             if (cond.getPriority() <= instance.getPriority()) {
                                 int index = AttributeManager.attributeList.indexOf(cond);
                                 AttributeManager.conditionList.add(index, instance);
+                                AttributeManager.conditionMap.put(instance.getName(),instance);
                                 break;
                             }
                         }

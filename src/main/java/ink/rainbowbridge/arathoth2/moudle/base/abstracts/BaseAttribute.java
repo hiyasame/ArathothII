@@ -56,6 +56,7 @@ public abstract class BaseAttribute {
                             if (attr.getPriority() <= instance.getPriority()) {
                                 int index = AttributeManager.attributeList.indexOf(attr);
                                 AttributeManager.attributeList.add(index, instance);
+                                AttributeManager.attributeMap.put(instance.getName(),instance);
                                 break;
                             }
                         }
