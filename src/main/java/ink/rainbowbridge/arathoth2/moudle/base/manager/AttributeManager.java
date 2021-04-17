@@ -40,8 +40,6 @@ public class AttributeManager {
     public static File attributeConfigDir = new File(ArathothII.getInstance().getPlugin().getDataFolder(), "attributes");
     @Getter
     public static File conditionConfigDir = new File(ArathothII.getInstance().getPlugin().getDataFolder(), "conditions");
-    @Getter
-    public static File itemFeatureConfigDir = new File(ArathothII.getInstance().getPlugin().getDataFolder(), "ItemFeatures");
     public static List<BaseAttribute> attributeList = Collections.synchronizedList(new ArrayList<>());
     public static List<BaseCondition> conditionList = Collections.synchronizedList(new ArrayList<>());
     public static ConcurrentHashMap<String,BaseAttribute> attributeMap = new ConcurrentHashMap<>();

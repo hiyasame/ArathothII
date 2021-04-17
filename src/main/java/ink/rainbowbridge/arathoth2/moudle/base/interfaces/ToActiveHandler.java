@@ -13,25 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * 支持热加载依赖时读入属性
  * @Author 寒雨
  * @Since 2021/4/11 0:41
  */
 public class ToActiveHandler {
-    private static HashMap<Plugin,BaseAttribute> attrInstances = new HashMap<>();
-    private static HashMap<Plugin, BaseCondition> condInstances = new HashMap<>();
+    private static HashMap<Plugin,List<BaseAttribute>> attrInstances = new HashMap<>();
+    private static HashMap<Plugin, List<BaseCondition>> condInstances = new HashMap<>();
 
-    /**
-     * 为所有插件注册使用 @ToActive 标注的属性/条件实例
-     */
-    public static void setup(){
-        for(Plugin plugin : Bukkit.getPluginManager().getPlugins()){
-            try{
-                setupPlugin(plugin);
-            }catch(Throwable t){
-                t.printStackTrace();
-            }
-        }
-    }
 
     /**
      * 读取插件中所有class中的toActive注解并且将上了注解的属性/条件new instance后放入map待用
@@ -45,7 +34,9 @@ public class ToActiveHandler {
                 if (BaseAttribute.class.isAssignableFrom(pluginClass) && pluginClass.isAnnotationPresent(ToActive.class)) {
                     try {
                         BaseAttribute attr = pl.getClass().equals(pluginClass) ? (BaseAttribute) pl : (BaseAttribute) pluginClass.newInstance();
-                        attrInstances.put(pl,attr);
+                       var list = attrInstances.get(pl);
+                       list.add(attr);
+                       attrInstances.put(pl,list);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -53,7 +44,9 @@ public class ToActiveHandler {
                 if (BaseCondition.class.isAssignableFrom(pluginClass) && pluginClass.isAnnotationPresent(ToActive.class)) {
                     try {
                         BaseCondition cond = pl.getClass().equals(pluginClass) ? (BaseCondition) pl : (BaseCondition) pluginClass.newInstance();
-                        condInstances.put(pl,cond);
+                        var list = condInstances.get(pl);
+                        list.add(cond);
+                        condInstances.put(pl,list);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -62,15 +55,8 @@ public class ToActiveHandler {
         }
     }
 
-    /**
-     * 注册所有使用 @ToActive 注册的属性/条件
-     */
-    public static void registerAll(){
-        for(var pl : attrInstances.keySet()){
-            attrInstances.get(pl).register(pl);
-        }
-        for (var pl : condInstances.keySet()){
-            condInstances.get(pl).register(pl);
-        }
+    public static void register(Plugin plugin){
+        attrInstances.get(plugin).forEach(attr -> attr.register(plugin));
+        condInstances.get(plugin).forEach(cond -> cond.register(plugin));
     }
 }

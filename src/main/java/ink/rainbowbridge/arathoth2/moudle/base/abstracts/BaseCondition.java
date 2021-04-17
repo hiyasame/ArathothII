@@ -197,6 +197,15 @@ public abstract class BaseCondition {
         return onPass(item,p,eve.getValues());
     }
 
+    /**
+     * 注销条件方法
+     */
+    public final void unRegister(){
+        AttributeManager.conditionMap.remove(this.getName());
+        AttributeManager.conditionList.remove(this);
+        TLocale.sendToConsole("Plugin.COND_UNREGISTER",getName());
+    }
+
     public final List<String> getKetherScripts(){
         return config.getStringList(getName()+"NotPass_KetherAction");
     }

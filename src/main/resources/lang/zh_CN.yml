@@ -1,7 +1,8 @@
 Plugin:
   ATTR_REGISTER: '&7[&fArathothII&7] &f注册属性: &8{0}&f , 来自插件: &8{1}&f , 优先级: &8{2}'
+  ATTR_UNREGISTER: '&7[&fArathothII&7] &f注销属性: &8{0}'
   COND_REGISTER: '&7[&fArathothII&7] &f注册条件: &8{0}&f , 来自插件: &8{1}&f , 优先级: &8{2}'
-  ITEMFEATURE_REGISTER: '&7[&fArathothII&7] &f注册物品特性: &8{0}&f , 来自插件: &8{1}&f , 优先级: &8{2}'
+  COND_UNREGISTER: '&7[&fArathothII&7] &f注销条件: &8{0}'
   SLOT_REGISTER: '&7[&fArathothII&7] &f注册槽位: &8{0} &f- &8{1}'
   ATTR_DEFAULTDESCRIPTION: '暂无描述'
   PLACEHOLDER_EXCEPTION: '变量错误'

@@ -17,6 +17,7 @@ JavaScript:
   Building:
     Bukkit: 'org.bukkit.Bukkit'
     API: 'ink.rainbowbridge.arathoth2.api.ArathothAPI'
+    utils: 'ink.rainbowbridge.arathoth2.moudle.script.javascript.JsUtils'
     Arrays: 'java.utils.Arrays'
 KetherAction:
   # 现在一切属性信息采用kether处理

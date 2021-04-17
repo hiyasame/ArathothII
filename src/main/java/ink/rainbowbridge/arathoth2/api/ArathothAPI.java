@@ -4,9 +4,11 @@ import ink.rainbowbridge.arathoth2.ArathothII;
 import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseAttribute;
 import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseCondition;
 import ink.rainbowbridge.arathoth2.moudle.base.data.StatusData;
+import ink.rainbowbridge.arathoth2.moudle.base.interfaces.ToActiveHandler;
 import ink.rainbowbridge.arathoth2.moudle.base.manager.AttributeManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 import java.util.List;
@@ -101,5 +103,31 @@ public class ArathothAPI {
 
     public static ConcurrentHashMap<String, BaseCondition> getConditionMap(){
         return AttributeManager.conditionMap;
+    }
+
+    /**
+     * 注册插件中所有使用@ToActive快捷注册的属性/条件
+     * @param plugin 插件
+     */
+    public static void registerToActive(Plugin plugin){
+        ToActiveHandler.setupPlugin(plugin);
+        ToActiveHandler.register(plugin);
+    }
+
+    /**
+     * 注销某个插件的全部属性
+     * @param plugin 插件
+     */
+    public static void unRegisterAll(Plugin plugin){
+        AttributeManager.attributeList.forEach(attr -> {
+            if (attr.getPlugin() == plugin){
+                attr.unRegister();
+            }
+        });
+        AttributeManager.conditionList.forEach(cond -> {
+            if (cond.getPlugin() == plugin){
+                cond.unRegister();
+            }
+        });
     }
 }

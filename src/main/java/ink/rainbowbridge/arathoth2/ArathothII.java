@@ -1,19 +1,30 @@
 package ink.rainbowbridge.arathoth2;
 
+import ink.rainbowbridge.arathoth2.api.ArathothAPI;
 import ink.rainbowbridge.arathoth2.bstats.Metrics;
 import ink.rainbowbridge.arathoth2.moudle.base.interfaces.ToActiveHandler;
 import ink.rainbowbridge.arathoth2.moudle.base.manager.AttributeManager;
 import ink.rainbowbridge.arathoth2.moudle.hook.PlaceHolderAPIHook;
+import ink.rainbowbridge.arathoth2.moudle.script.javascript.JavaScriptAttribute;
+import ink.rainbowbridge.arathoth2.moudle.script.javascript.JavaScriptCondition;
 import io.izzel.taboolib.loader.Plugin;
 import io.izzel.taboolib.module.config.TConfig;
 import io.izzel.taboolib.module.inject.TInject;
 import io.izzel.taboolib.module.locale.TLocale;
 import io.izzel.taboolib.module.locale.logger.TLogger;
+import jdk.internal.dynalink.beans.StaticClass;
 import lombok.Getter;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
@@ -38,13 +49,9 @@ public class ArathothII extends Plugin {
         if (!AttributeManager.getConditionConfigDir().exists()){
             AttributeManager.getConditionConfigDir().mkdir();
         }
-        if (!AttributeManager.getItemFeatureConfigDir().exists()){
-            AttributeManager.getItemFeatureConfigDir().mkdir();
-        }
         AttributeManager.loadSlots();
-        //注册 @ToActive 注解标注的属性/条件
-        ToActiveHandler.setup();
-        ToActiveHandler.registerAll();
+        //为ArathothII本体注册 @ToActive 注解标注的属性/条件
+        ArathothAPI.registerToActive(getPlugin());
         Metrics metrics = new Metrics(this.getPlugin(), 9838);
         metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
         boolean success = new PlaceHolderAPIHook().register();
@@ -91,7 +98,4 @@ public class ArathothII extends Plugin {
         return plugin.getDescription().getDepend().contains("ArathothII") || plugin.getDescription().getSoftDepend().contains("ArathothII");
     }
 
-    public static void loadJavaScripts(){
-        File file = new File(getInstance().getPlugin().getDataFolder(),"JavaScript"+File.separatorChar+"Attributes");
-    }
 }

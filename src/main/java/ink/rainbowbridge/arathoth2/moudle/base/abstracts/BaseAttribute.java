@@ -287,4 +287,13 @@ public abstract class BaseAttribute {
                 //读取nbt属性，附加值属性等
             return data;
     }
+
+    /**
+     * 注销属性方法
+     */
+    public final void unRegister(){
+        AttributeManager.attributeMap.remove(this.getName());
+        AttributeManager.attributeList.remove(this);
+        TLocale.sendToConsole("Plugin.ATTR_UNREGISTER",getName());
+    }
 }
