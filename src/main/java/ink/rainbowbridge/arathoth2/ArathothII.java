@@ -2,9 +2,12 @@ package ink.rainbowbridge.arathoth2;
 
 import ink.rainbowbridge.arathoth2.api.ArathothAPI;
 import ink.rainbowbridge.arathoth2.bstats.Metrics;
+import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseAttribute;
+import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseCondition;
 import ink.rainbowbridge.arathoth2.moudle.base.interfaces.ToActiveHandler;
 import ink.rainbowbridge.arathoth2.moudle.base.manager.AttributeManager;
 import ink.rainbowbridge.arathoth2.moudle.hook.PlaceHolderAPIHook;
+import ink.rainbowbridge.arathoth2.moudle.script.javascript.JSLoader;
 import ink.rainbowbridge.arathoth2.moudle.script.javascript.JavaScriptAttribute;
 import ink.rainbowbridge.arathoth2.moudle.script.javascript.JavaScriptCondition;
 import io.izzel.taboolib.loader.Plugin;
@@ -96,6 +99,19 @@ public class ArathothII extends Plugin {
      */
     public static boolean isDependArathothII(org.bukkit.plugin.Plugin plugin) {
         return plugin.getDescription().getDepend().contains("ArathothII") || plugin.getDescription().getSoftDepend().contains("ArathothII");
+    }
+
+    public static void loadPlugin(){
+        if (!AttributeManager.getAttributeConfigDir().exists()){
+            AttributeManager.getAttributeConfigDir().mkdir();
+        }
+        if (!AttributeManager.getConditionConfigDir().exists()){
+            AttributeManager.getConditionConfigDir().mkdir();
+        }
+        AttributeManager.loadSlots();
+        JSLoader.reloadJs();
+        AttributeManager.attributeList.forEach(BaseAttribute::load);
+        AttributeManager.conditionList.forEach(BaseCondition::load);
     }
 
 }

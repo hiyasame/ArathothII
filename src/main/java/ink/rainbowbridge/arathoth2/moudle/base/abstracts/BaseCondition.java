@@ -206,6 +206,10 @@ public abstract class BaseCondition {
         TLocale.sendToConsole("Plugin.COND_UNREGISTER",getName());
     }
 
+    public boolean isEnable(){
+        return config.getBoolean(getName()+".Enable",true);
+    }
+
     public final List<String> getKetherScripts(){
         return config.getStringList(getName()+"NotPass_KetherAction");
     }

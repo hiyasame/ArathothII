@@ -11,3 +11,22 @@ Plugin:
 Debug:
   ATTR_EXECUTE: 'ATTR_EXECUTE: {0} VALUE: {1},{2},{3} EXECUTOR: {4}'
   ATTR_UPDATE: 'ATTR_UPDATE: {0} , TIME: {1}ms'
+Command:
+  unkown: '&7未知指令.....'
+  player_offline: '&7目标玩家不存在或离线.....'
+  try_reload: '&7尝试重载插件.....'
+  success_reload: '&f插件重载完成,耗时: &8{0}ms'
+  failed_reload: '&f重载插件时发生异常: &4{0} &f,前往控制台查看详细错误报告'
+  list_json:
+    ==: JSON
+    text:
+      - '&7&l● &8{0}: &f{1}'
+    args:
+      1:
+        hover: '{2}'
+  description:
+    about: '关于插件 & 作者'
+    statusinfo: '查看目标玩家属性面板'
+    reload: '重载插件配置'
+    list: '列出已经注册的属性/条件'
+    nbtinfo: '查看手中物品NBT信息'

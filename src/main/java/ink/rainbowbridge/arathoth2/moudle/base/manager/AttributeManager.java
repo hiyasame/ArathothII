@@ -51,6 +51,7 @@ public class AttributeManager {
      * 读取配置文件中的注册槽位
      */
     public static void loadSlots() {
+        slotsMap.clear();
         for (String i : ArathothII.config.getConfigurationSection("Slots.Register").getKeys(false)) {
             slotsMap.put(Integer.parseInt(i), ArathothII.config.getString("Slots.Register." + i));
             TLocale.sendToConsole("Plugin.SLOT_REGISTER", i, ArathothII.config.getString("Slots.Register." + i));
