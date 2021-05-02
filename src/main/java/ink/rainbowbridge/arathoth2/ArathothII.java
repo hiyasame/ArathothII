@@ -108,6 +108,10 @@ public class ArathothII extends Plugin {
         if (!AttributeManager.getConditionConfigDir().exists()){
             AttributeManager.getConditionConfigDir().mkdir();
         }
+        File dataDir = new File(getInstance().getPlugin().getDataFolder(),"Data");
+        if(!dataDir.exists()){
+            dataDir.mkdir();
+        }
         AttributeManager.loadSlots();
         JSLoader.reloadJs();
         AttributeManager.attributeList.forEach(BaseAttribute::load);

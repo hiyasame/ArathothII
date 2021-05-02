@@ -3,6 +3,8 @@ package ink.rainbowbridge.arathoth2.moudle.base.data;
 import ink.rainbowbridge.arathoth2.ArathothII;
 import ink.rainbowbridge.arathoth2.api.ArathothAPI;
 import ink.rainbowbridge.arathoth2.moudle.base.enums.PlaceHolderType;
+import io.izzel.taboolib.util.serialize.TSerializable;
+import io.izzel.taboolib.util.serialize.TSerializeCustom;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @Author 寒雨
  * @Since 2021/3/12 22:22
  */
-public class StatusData {
+public class StatusData implements TSerializable {
     @Getter
     @Setter
     private Double min;
