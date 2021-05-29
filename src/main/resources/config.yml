@@ -2,6 +2,15 @@ Options:
   language: zh_CN
   DecimalFormat: '0.0'
   DebugLevel: 0
+# 数据库相关
+Database:
+  # LOCAL/MONGODB
+  method: LOCAL
+  # 选择mongodb才需要填这个
+  url:
+    client: 'mongodb://localhost:3307'
+    database: test
+    collection: arathoth
 # 属性生效槽位相关设定
 # 第一行含有关键词的物品在指定槽位才会读取属性
 Slots:
@@ -27,3 +36,19 @@ KetherAction:
   - 'actionbar color *"&f你对 [NAME] &f造成了 &4&l[DAMAGE] &f点伤害"'
 # 物品lore第一行含有该字符串即可用来右键查询实体属性
 AttrCheckerType: 'EntityAttrChecker'
+StatusInfo:
+  command: 'my'
+  pattern:
+  - '&f&l&m┏-------------&f&l[ &b%player_name% &7属性查询面板 &f&l]&f&l&m-------------┓'
+  - ''
+  - '   &f&l┗ &7最大生命: &f%ArathothII_total:AdditionalHealth%'
+  - '   &f&l┗ &7生命恢复: &f%ArathothII_total:Regen%'
+  # 小于这个行数，不会发送属性信息，执行noStatusAction
+  minlines: 2
+  # 如果注册的papi解析出来值为0，则隐藏含有这条papi的行
+  # 隐藏的行不计入行数
+  papi:
+  - '%ArathothII_total:AdditionalHealth%'
+  - '%ArathothII_total:Regen%'
+  noStatusAction:
+  - 'title color *"&8&l太弱小了" subtitle color *"&f都是因为...你没有力量..." by 10 20 10'

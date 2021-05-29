@@ -1,11 +1,11 @@
 package ink.rainbowbridge.arathoth2.api;
 
 import ink.rainbowbridge.arathoth2.ArathothII;
-import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseAttribute;
-import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseCondition;
-import ink.rainbowbridge.arathoth2.moudle.base.data.StatusData;
-import ink.rainbowbridge.arathoth2.moudle.base.interfaces.ToActiveHandler;
-import ink.rainbowbridge.arathoth2.moudle.base.manager.AttributeManager;
+import ink.rainbowbridge.arathoth2.module.base.abstracts.BaseAttribute;
+import ink.rainbowbridge.arathoth2.module.base.abstracts.BaseCondition;
+import ink.rainbowbridge.arathoth2.module.base.data.StatusData;
+import ink.rainbowbridge.arathoth2.module.base.interfaces.ToActiveHandler;
+import ink.rainbowbridge.arathoth2.module.base.manager.AttributeManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;

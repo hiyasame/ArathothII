@@ -2,32 +2,21 @@ package ink.rainbowbridge.arathoth2;
 
 import ink.rainbowbridge.arathoth2.api.ArathothAPI;
 import ink.rainbowbridge.arathoth2.bstats.Metrics;
-import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseAttribute;
-import ink.rainbowbridge.arathoth2.moudle.base.abstracts.BaseCondition;
-import ink.rainbowbridge.arathoth2.moudle.base.interfaces.ToActiveHandler;
-import ink.rainbowbridge.arathoth2.moudle.base.manager.AttributeManager;
-import ink.rainbowbridge.arathoth2.moudle.hook.PlaceHolderAPIHook;
-import ink.rainbowbridge.arathoth2.moudle.script.javascript.JSLoader;
-import ink.rainbowbridge.arathoth2.moudle.script.javascript.JavaScriptAttribute;
-import ink.rainbowbridge.arathoth2.moudle.script.javascript.JavaScriptCondition;
+import ink.rainbowbridge.arathoth2.module.base.abstracts.BaseAttribute;
+import ink.rainbowbridge.arathoth2.module.base.abstracts.BaseCondition;
+import ink.rainbowbridge.arathoth2.module.base.manager.AttributeManager;
+import ink.rainbowbridge.arathoth2.module.hook.PlaceHolderAPIHook;
+import ink.rainbowbridge.arathoth2.module.script.javascript.JSLoader;
 import io.izzel.taboolib.loader.Plugin;
 import io.izzel.taboolib.module.config.TConfig;
 import io.izzel.taboolib.module.inject.TInject;
 import io.izzel.taboolib.module.locale.TLocale;
 import io.izzel.taboolib.module.locale.logger.TLogger;
-import jdk.internal.dynalink.beans.StaticClass;
 import lombok.Getter;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
@@ -37,7 +26,7 @@ import java.util.Random;
  * @Since 2021/3/7 10:06
  */
 public class ArathothII extends Plugin {
-    @TInject(value = "config.yml",locale = "Options.language")
+    @TInject(value = "config.yml",locale = "Options.language",migrate = true)
     public static TConfig config = null;
     @Getter
     public static TLogger logger = TLogger.getUnformatted("ArathothII");
